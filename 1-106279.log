@@ -1,0 +1,15 @@
+ --- Init ---
+  File "MyBot.py", line 39
+ --- Bot used 85 milliseconds ---
+-----------------------------------------------------------------------------
+ --- Frame #1 ---
+    for neighbor in game_map.neighbors(square)
+ --- Bot used 0 milliseconds ---
+ERRORED!
+Response received (if any):
+    for neighbor in game_map.neighbors(square)
+ --- Bot was killed. Below is the rest of its output (if any): ---
+                                             ^
+SyntaxError: invalid syntax
+
+ --- End bot output ---

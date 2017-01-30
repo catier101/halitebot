@@ -1,0 +1,15 @@
+ --- Init ---
+  File "MyBot.py", line 105
+ --- Bot used 88 milliseconds ---
+-----------------------------------------------------------------------------
+ --- Frame #1 ---
+    if direction == STILL:
+ --- Bot used 0 milliseconds ---
+ERRORED!
+Response received (if any):
+    if direction == STILL:
+ --- Bot was killed. Below is the rest of its output (if any): ---
+    ^
+IndentationError: unexpected indent
+
+ --- End bot output ---
