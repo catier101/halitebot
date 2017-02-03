@@ -1,0 +1,15 @@
+ --- Init ---
+  File "MyBot.py", line 62
+ --- Bot used 78 milliseconds ---
+-----------------------------------------------------------------------------
+ --- Frame #1 ---
+    def target_neutral_production(square):
+ --- Bot used 0 milliseconds ---
+ERRORED!
+Response received (if any):
+    def target_neutral_production(square):
+ --- Bot was killed. Below is the rest of its output (if any): ---
+      ^
+IndentationError: expected an indented block
+
+ --- End bot output ---

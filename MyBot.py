@@ -6,11 +6,26 @@ import random
 myID, game_map = hlt.get_init()
 hlt.send_init("MyPythonBot")
 
+# def locate_borders(square):
+#     direction = STILL
+#     current = square
+#     N_BORDER = square.game_map.width
+#     borders = [N_BORDER, E_BORDER, S_BORDER, W_BORDER]
+#     for square in borders:
+
+def check_enemy_border():
+    enemy_border = False
+    for square in game_map:
+        if square.owner == myID:
+            if any(neighbor.owner not in (0, myID) for neighbor in game_map.neighbors(square)):
+                enemy_border = True
+
+    return enemy_border
 
 def target_enemy_production(square):
     direction = STILL
     current = square
-    max_distance = min(game_map.width, game_map.height) / 8
+    max_distance = min(game_map.width, game_map.height) / 15
     my_production_val = sum(neighbor.production for neighbor in game_map.neighbors(current))
     for square in game_map:
         if square.owner not in (0, myID):
@@ -37,6 +52,18 @@ def target_enemy_production(square):
             else:
                 direction = STILL
                 return direction
+
+#def attack_enemy(square):
+    # 3 borders should begin attacking enemy, one border should continue expansion if possible (will need to account for if not)
+    # consider distance between border where enemy is present
+    # consider highest production areas near borders of my bot
+        # potentially through find highest production areas
+        # potentially through if production is greater than some arbitrary number...
+        # potentially through adding sum of border production??
+    # direction = STILL
+    # current = square
+    # square_production_val
+
 
 def target_neutral_production(square):
     direction = STILL
@@ -87,12 +114,12 @@ def heuristic(square):
         return sum(neighbor.strength for neighbor in game_map.neighbors(square) if neighbor.owner not in (0, myID))
 
 def assign_move(square):
-    enemy_border = any(neighbor.owner not in (0, myID) for neighbor in game_map.neighbors(square))
     target, direction = max(((neighbor, direction) for direction, neighbor in enumerate(game_map.neighbors(square))
                              if neighbor.owner != myID),
                             default=(None,None),
                             key=lambda t: heuristic(t[0]))
     if direction is not None and target.strength < square.strength:
+        enemy_border = check_enemy_border()
         if enemy_border:
             direction = target_enemy_production(square)
             return Move(square,direction)

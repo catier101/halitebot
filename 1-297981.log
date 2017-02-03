@@ -1,0 +1,15 @@
+ --- Init ---
+  File "MyBot.py", line 86
+ --- Bot used 92 milliseconds ---
+-----------------------------------------------------------------------------
+ --- Frame #1 ---
+    def find_nearest_enemy_direction(square):
+ --- Bot used 0 milliseconds ---
+ERRORED!
+Response received (if any):
+    def find_nearest_enemy_direction(square):
+ --- Bot was killed. Below is the rest of its output (if any): ---
+      ^
+IndentationError: expected an indented block
+
+ --- End bot output ---

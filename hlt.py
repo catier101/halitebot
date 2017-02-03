@@ -12,7 +12,6 @@ def grouper(iterable, n, fillvalue=None):
 
 NORTH, EAST, SOUTH, WEST, STILL = range(5)
 
-
 def opposite_cardinal(direction):
     "Returns the opposing cardinal direction."
     return (direction + 2) % 4 if direction != STILL else STILL
