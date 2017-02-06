@@ -19,7 +19,6 @@ def check_enemy_border():
         if square.owner == myID:
             if any(neighbor.owner not in (0, myID) for neighbor in game_map.neighbors(square)):
                 enemy_border = True
-
     return enemy_border
 
 def target_enemy_production(square):
@@ -29,8 +28,8 @@ def target_enemy_production(square):
     my_production_val = sum(neighbor.production for neighbor in game_map.neighbors(current))
     for square in game_map:
         if square.owner not in (0, myID):
-            production_val = sum(neighbor.production for neighbor in game_map.neighbors(square))
-            strength_val = sum(neighbor.strength for neighbor in game_map.neighbors(square))
+            production_val = sum(neighbor.production for neighbor in game_map.neighbors(square) if neighbor.owner not in (0,myID))
+            strength_val = sum(neighbor.strength for neighbor in game_map.neighbors(square) if neighbor.owner != myID)
             if production_val > my_production_val and square.strength > strength_val / 4 :
                 for d in (NORTH, EAST, SOUTH, WEST):
                     distance = 0
@@ -53,16 +52,33 @@ def target_enemy_production(square):
                 direction = STILL
                 return direction
 
-#def attack_enemy(square):
+def attack_enemy(square):
     # 3 borders should begin attacking enemy, one border should continue expansion if possible (will need to account for if not)
     # consider distance between border where enemy is present
     # consider highest production areas near borders of my bot
         # potentially through find highest production areas
         # potentially through if production is greater than some arbitrary number...
         # potentially through adding sum of border production??
-    # direction = STILL
-    # current = square
-    # square_production_val
+    direction = STILL
+    current = square
+    my_production_val = sum(neighbor.production for neighbor in game_map.neighbors(current))
+    for square in game_map:
+        if square.owner not in (0, myID):
+            production_val = sum(neighbor.production for neighbor in game_map.neighbors(square))
+            strength_val = sum(neighbor.strength for neighbor in game_map.neighbors(square))
+            if production_val > my_production_val and square.strength > strength_val / 4 :
+                for d in (NORTH, EAST, SOUTH, WEST):
+
+                    current = game_map.get_target(current, d)
+                    distance = game_map.get_distance(square, current)
+                    if distance < max_distance:
+                        direction = d
+
+                    return direction
+            else:
+                direction = STILL
+                return direction
+
 
 
 def target_neutral_production(square):

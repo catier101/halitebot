@@ -1,0 +1,15 @@
+ --- Init ---
+Traceback (most recent call last):
+ --- Bot used 67 milliseconds ---
+-----------------------------------------------------------------------------
+ --- Frame #1 ---
+  File "MyBot.py", line 2, in <module>
+ --- Bot used 0 milliseconds ---
+ERRORED!
+Response received (if any):
+  File "MyBot.py", line 2, in <module>
+ --- Bot was killed. Below is the rest of its output (if any): ---
+    from hlt import NORTH, EAST, SOUTH, WEST, STILL, Move, Square
+ImportError: cannot import name 'Move'
+
+ --- End bot output ---
